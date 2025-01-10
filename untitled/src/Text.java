@@ -22,4 +22,8 @@ public class Text {
         public void setContingut(String nouContingut) {
             this.contingut = nouContingut;
         }
+
+    public String getAutor() {
+        return autor;
+    }
 }

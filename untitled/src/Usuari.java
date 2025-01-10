@@ -8,11 +8,16 @@ public class Usuari {
     private Map<String, Relacio> relacions = new HashMap<>();
     private List<Text> textos = new ArrayList<>();
     private Set<String> usuarisAcceptats = new HashSet<>();
+    private Set<String> usuarisBloquejats = new HashSet<>();
+    private List<MissatgePrivat> missatgesRebuts = new ArrayList<>();
+
+
 
     public Usuari(String id, String nom, String contrasenya) {
         this.id = id;
         this.nom = nom;
         this.contrasenya = contrasenya;
+        this.missatgesRebuts = new ArrayList<>();
     }
 
     public boolean autenticar(String contrasenya) {
@@ -41,7 +46,7 @@ public class Usuari {
     }
 
     void rebreMissatge(MissatgePrivat missatge) {
-        System.out.println("Nou missatge de " + missatge.getEmissor().getNom() + ": " + missatge.getContingut());
+        missatgesRebuts.add(missatge);
     }
 
     public void afegirText(Text text) {
@@ -80,5 +85,13 @@ public class Usuari {
 
     public String getId() {
         return id;
+    }
+
+
+    public void mostraMissatgesRebuts() {
+        System.out.println("Missatges rebuts:");
+        for (MissatgePrivat missatge : missatgesRebuts) {
+            System.out.println(missatge.getEmissor().getNom() + ": " + missatge.getContingut());
+        }
     }
 }
